@@ -6,13 +6,16 @@ library(e1071)
 library(TTR)
 library(DMwR)
 library(neuralnet)
+library(rvest)
 
-getSymbols<- function()
+
+getSymbols<- function() #old database is benhind a paywall
 {
-  fileUrl<-"http://finviz.com/export.ashx?v=152&f=idx_sp500&ft=1&ta=1&p=d&r=1&c=1"
-  temp <- tempfile()
-  download.file(fileUrl,temp, method="curl")
-  symbols <- read.csv(temp)
+  theurl <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+  file<-read_html(theurl)
+  tables<-html_nodes(file, "table")
+  stocktable<-as.data.frame(html_table(tables[1], fill = TRUE)) #may be better way to do this step
+  symbols <- as.list(stocktable)
 }
 
 getPrices<- function(symbol)

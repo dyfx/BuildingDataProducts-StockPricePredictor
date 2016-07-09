@@ -18,7 +18,7 @@ shinyServer(function(input, output) {
   
   output$symbols<-renderUI({
     
-    selectInput("symbols", "Stock Symbol", choices=as.vector(getSymbols()$Ticker))
+    selectInput("symbols", "Stock Symbol", choices=as.vector(getSymbols()$Ticker.symbol))
   }) 
   
   output$stockPlot <- renderPlot({

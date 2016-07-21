@@ -9,7 +9,7 @@ library(neuralnet)
 library(rvest)
 
 
-getSymbols<- function() #old database is benhind a paywall
+getSymbols<- function() #old database is behind a paywall
 {
   theurl <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
   file<-read_html(theurl)
